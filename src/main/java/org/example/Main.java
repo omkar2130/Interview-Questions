@@ -3,27 +3,39 @@ package org.example;
 
 import java.util.*;
 
-public class Main {
-    public static void main(String[] args) {
+class Person {
+    String name;
 
-        int [] keys  =  {1, 2, 3, 4, 5, 6, 7};
-        String [] values  =  {"A", "B", "B", "C", "B", "D", "C"};
-
-        System.out.println(demo(keys,values));
-
+    Person(String name) {
+        this.name = name;
     }
 
-    public static Map<String, List<Integer>> demo(int[] key , String[] values) {
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Person) && ((Person) obj).name.equals(this.name);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name); // or name.hashCode()
+    }
 
-        Map<String, List<Integer> > inMap = new HashMap<>();
-        for(int i=0 ; i < key.length ; i++) {
-            String value = values[i];
-            int k = key[i];
+    // hashCode() is NOT overridden!
+}
 
-            inMap.computeIfAbsent(value, x -> new ArrayList<>()).add(k);
+public class Main {
+    public static void main(String[] args) {
+        Map<Person, String> map = new HashMap<>();
+
+        Person p1 = new Person("Alice");
+        Person p2 = new Person("Alice");
+
+        map.put(p1, "Developer");
+        System.out.println(map.size()); // ❌ null, even though p1.equals(p2) is true
+
+        for(Map.Entry<Person,String> m : map.entrySet()) {
+            System.out.println(m.getKey()+"  "+m.getValue());
         }
-        return inMap;
 
-            }
-
+        System.out.println(map.get(p1)); // ❌ null, even though p1.equals(p2) is true
+    }
 }

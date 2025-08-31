@@ -1,5 +1,6 @@
 package org.example.multitreading.vartualThread;
 
+
 public class VartualThreadDemo {
 	//You can create a virtual thread using the Thread.ofVirtual() method:
 	//Reduced Memory Usage
@@ -7,7 +8,7 @@ public class VartualThreadDemo {
 	  static int cnt=0;
 	    public static void main(String[] args) throws InterruptedException {
 	    	
-	        Thread virtualThread = Thread.ofVirtual().start(() -> {
+	   /*     Thread virtualThread = Thread.ofVirtual().start(() -> {
 	        	for(int i=0;i<2000;i++) {
 	              cnt++;
 	              }
@@ -15,7 +16,7 @@ public class VartualThreadDemo {
       
 	        // Wait for the thread to finish
 	        virtualThread.join();
-	        System.out.println(cnt);
+	        System.out.println(cnt);*/
 
 	    }
 	}

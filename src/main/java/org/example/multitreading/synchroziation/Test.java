@@ -11,11 +11,13 @@ public class Test {
 		t.start();
 		t1.start();
 
-		t1.join();
 		t.join();
+		t1.join();
 
 		System.out.println(cnt.getCount());
 		
-		
+		// when we are doing join() that time 2nd tread is wating to complete 1st tread.
+		//after completing 1st then 2nd will start
+		// if we comment join() then directly main tread print 0
 	}
 }
